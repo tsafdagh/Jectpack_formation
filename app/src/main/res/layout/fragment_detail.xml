@@ -34,10 +34,19 @@
 
     <TextView android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:id="@+id/dogLifespan"
+              android:id="@+id/dogPurpose"
               android:text="Dog LifeSpan"
               style="@style/Text"
               android:layout_centerHorizontal="true"
               android:layout_margin="4dp"
               android:layout_below="@id/dogTemperament"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:id="@+id/dogLifespan"
+              android:text="Dog LifeSpan"
+              style="@style/Text"
+              android:layout_centerHorizontal="true"
+              android:layout_margin="4dp"
+              android:layout_below="@id/dogPurpose"/>
 </RelativeLayout>
