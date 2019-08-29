@@ -1,4 +1,4 @@
-package com.tsafack.jetpackformation.model.util
+package com.tsafack.jetpackformation.util
 
 import android.content.Context
 import android.widget.ImageView

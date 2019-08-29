@@ -7,8 +7,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.tsafack.jetpackformation.R
 import com.tsafack.jetpackformation.model.DogBreed
-import com.tsafack.jetpackformation.model.util.getProgressDrawable
-import com.tsafack.jetpackformation.model.util.loaImage
+import com.tsafack.jetpackformation.util.getProgressDrawable
+import com.tsafack.jetpackformation.util.loaImage
 import kotlinx.android.synthetic.main.item_dog.view.*
 
 class DogListAdapter(val dogList: ArrayList<DogBreed>) : RecyclerView.Adapter<DogListAdapter.DogViewHolder>() {
