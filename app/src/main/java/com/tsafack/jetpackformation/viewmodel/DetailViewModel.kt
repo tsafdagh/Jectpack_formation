@@ -10,6 +10,6 @@ class DetailViewModel: ViewModel() {
     fun fetch(){
         val dog = DogBreed("1", "Cordi", "15 years", "breedgroup", "bredFor","temperament", "url")
         dogLivedata.value = dog
-        
+
     }
 }
