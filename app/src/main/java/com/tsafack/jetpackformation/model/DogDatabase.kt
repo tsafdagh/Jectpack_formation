@@ -11,7 +11,7 @@ abstract class DogDatabase:RoomDatabase() {
 
     companion object {
         @Volatile private var instance:DogDatabase?=null
-        private val LOCK=Any()
+        private val LOCK = Any()
 
         operator fun invoke(context: Context)= instance?: synchronized(LOCK){
             instance?:buildDatabase(context).also{

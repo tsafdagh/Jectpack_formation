@@ -19,5 +19,9 @@
         <action
                 android:id="@+id/action_detailFragment_to_listFragment2"
                 app:destination="@id/listFragment"/>
+        <argument
+                android:name="doUid"
+                android:defaultValue="0"
+                app:argType="integer"/>
     </fragment>
 </navigation>

@@ -1,15 +1,19 @@
 package com.tsafack.jetpackformation.viewmodel
 
+import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.tsafack.jetpackformation.model.DogBreed
+import com.tsafack.jetpackformation.model.DogDatabase
+import kotlinx.coroutines.launch
 
-class DetailViewModel: ViewModel() {
+class DetailViewModel(application: Application) : BaseViewModel(application) {
     val dogLivedata = MutableLiveData<DogBreed>()
 
-    fun fetch(){
-        val dog = DogBreed("1", "Cordi", "15 years", "breedgroup", "bredFor","temperament", "url")
-        dogLivedata.value = dog
+    fun fetch(uuid: Int) {
 
+        launch {
+            val dog = DogDatabase(getApplication()).dogDao().getDog(uuid)
+            dogLivedata.value = dog
+        }
     }
 }
