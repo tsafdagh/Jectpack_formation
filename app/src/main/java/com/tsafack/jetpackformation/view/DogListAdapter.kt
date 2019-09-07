@@ -55,5 +55,5 @@ class DogListAdapter(val dogList: ArrayList<DogBreed>) : RecyclerView.Adapter<Do
         Navigation.findNavController(v).navigate(action)
     }
 
-    class DogViewHolder(var view: com.tsafack.jetpackformation.databinding.ItemDogBinding) : RecyclerView.ViewHolder(view.root)
+    class DogViewHolder(var view: ItemDogBinding) : RecyclerView.ViewHolder(view.root)
 }

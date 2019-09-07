@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import com.tsafack.jetpackformation.model.DogBreed
 import com.tsafack.jetpackformation.model.DogDatabase
 import com.tsafack.jetpackformation.model.DogsApiService
+import com.tsafack.jetpackformation.util.NotificationsHelper
 import com.tsafack.jetpackformation.util.SharedpreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -26,8 +27,8 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
     val loading = MutableLiveData<Boolean>()
 
     fun refresh() {
+        checkCacheDuration()
         val updateTime = prefHelper.getUpdateTime()
-
         if (updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime) {
             fetchFromDatabse()
         } else {
@@ -35,7 +36,18 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
         }
     }
 
-    fun refrechBypassCache(){
+    private fun checkCacheDuration() {
+        val cachePreference = prefHelper.getCacheDuration()
+
+        try {
+            val cachePreferenceInt = cachePreference?.toInt() ?: 5 * 60
+            refreshTime = cachePreferenceInt.times(60* 1000 * 1000 * 1000L)
+        } catch (e: NumberFormatException) {
+            e.printStackTrace()
+        }
+    }
+
+    fun refrechBypassCache() {
         refrechFromRemote()
     }
 
@@ -59,7 +71,7 @@ class ListViewModel(application: Application) : BaseViewModel(application) {
                     override fun onSuccess(dogList: List<DogBreed>) {
                         storeDogsLocally(dogList)
                         Toast.makeText(getApplication(), "Dogs retrived from endPoint", Toast.LENGTH_LONG).show()
-
+                        NotificationsHelper(getApplication()).createNotification()
                     }
 
                     override fun onError(e: Throwable) {
